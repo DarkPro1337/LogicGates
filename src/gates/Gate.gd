@@ -21,8 +21,8 @@ func setup_io():
 			outputs.append(false)
 		
 		set_slot(i,
-			i < inputs_size, 0, Color.black,
-			i < outputs_size, 0, Color.black
+			i < inputs_size, 0, Color.cornflower,
+			i < outputs_size, 0, Color.cornflower
 		)
 
 func process():
@@ -39,9 +39,9 @@ func update_io():
 func update_inputs():
 	for i in range( inputs.size() ):
 		
-		var color := Color.black
+		var color := Color.cornflower
 		if inputs[i]:
-			color = Color.white
+			color = Color.salmon
 		
 		set_slot(i,
 			is_slot_enabled_left(i), 0,
@@ -53,9 +53,9 @@ func update_inputs():
 func update_outputs():
 	for i in range( outputs.size() ):
 		
-		var color := Color.black
+		var color := Color.cornflower
 		if outputs[i]:
-			color = Color.white
+			color = Color.salmon
 		
 		set_slot(i,
 			is_slot_enabled_left(i), 0,

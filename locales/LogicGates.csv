@@ -1,0 +1,36 @@
+﻿id;en;ru
+Open;Open;Открыть
+Cancel;Cancel;Отмена
+Go to parent folder.;Go to parent folder;Перейти вверх
+Path:;Path:;Путь:
+Refresh files.;Refresh files;Обновить
+Toggle the visibility of hidden files.;Toggle the visibility of hidden files;Переключить видимость скрытых файлов
+Create Folder;Create Folder;Создать папку
+File:;File:;Файл:
+All Files (*);All Files (*);Все файлы (*)
+Directories & Files:;Directories & Files:;Каталоги и файлы:
+OK;OK;ОК
+Please Confirm...;Please Confirm...;Пожалуйста подтвердите…
+Name:;Name:;Имя:
+Could not create folder.;Could not create folder.;Не удалось создать папку.
+Alert!;Alert!;Внимание!
+Must use a valid extension.;Must use a valid extension.;Необходимо использовать правильное расширение.
+File Exists, Overwrite?;File Exists, Overwrite?;Файл уже существует, перезаписать?
+FILE;File;Файл
+EDIT;Edit;Правка
+HELP;Help;Справка
+CREATE;Create;Создать
+OPEN;Open;Открыть
+SAVE;Save;Сохранить
+EXIT;Exit;Выход
+UNDO;Undo;Отменить
+REDO;Redo;Повторить
+SHOW_HELP;Show help;Посмотреть справку
+ABOUT;About;О программе
+LOGIC;Logic;Логика
+IO;Input/Output;Ввод/Вывод
+BUTTON;Button;Кнопка
+TOGGLE;Toggle;Переключатель
+LED;LED;Светодиод
+CLOCK;Clock;Часы
+Open a File;Open a File;Открыть файл

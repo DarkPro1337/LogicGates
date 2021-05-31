@@ -3,12 +3,12 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Button
 
-var load_path : String
-
-func _on_PopupButton_pressed():
-	WorkbenchManager.add_gate(
-		load(load_path).instance()
-	)
+#var load_path : String
+#
+#func _on_PopupButton_pressed():
+#	WorkbenchManager.add_gate(
+#		load(load_path).instance()
+#	)
 "
 
 [node name="GatesButton" type="Button"]
@@ -22,4 +22,5 @@ script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
 [connection signal="pressed" from="." to="." method="_on_PopupButton_pressed"]

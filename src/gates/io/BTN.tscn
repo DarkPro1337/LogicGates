@@ -1,0 +1,77 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/gates/Gate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/ui/fonts/segoeuib.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Gate
+
+var button0 = load(\"res://src/ui/styles/button0.tres\")
+var button1 = load(\"res://src/ui/styles/button1.tres\")
+
+func _on_Button_button_down():
+	outputs[0] = true
+	$Button.text = \"1\"
+	# Font color and styling for TRUE
+	$Button.set(\"custom_colors/font_color\", Color.salmon)
+	$Button.set(\"custom_colors/font_color_pressed\", Color.salmon)
+	$Button.set(\"custom_colors/font_color_hover\", Color.salmon)
+	#$Button.set(\"custom_styles/pressed\", button1)
+	#$Button.set(\"custom_styles/focus\", button1)
+	update_outputs()
+
+func _on_Button_button_up():
+	outputs[0] = false
+	$Button.text = \"0\"
+	# Font color and styling for FALSE
+	$Button.set(\"custom_colors/font_color\", Color.cornflower)
+	$Button.set(\"custom_colors/font_color_pressed\", Color.cornflower)
+	$Button.set(\"custom_colors/font_color_hover\", Color.cornflower)
+	#$Button.set(\"custom_styles/pressed\", button0)
+	#$Button.set(\"custom_styles/focus\", button0)
+	update_outputs()
+"
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="PressButton" instance=ExtResource( 1 )]
+anchor_bottom = 0.0333333
+margin_right = 100.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 100, 120 )
+custom_constants/separation = 0
+title = "BTN"
+slot/0/right_enabled = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color( 1, 1, 1, 1 )
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color( 1, 1, 1, 1 )
+script = SubResource( 1 )
+outputs_size = 1
+
+[node name="Button" type="Button" parent="." index="0"]
+margin_left = 20.0
+margin_top = 30.0
+margin_right = 78.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 64 )
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.388235, 0.580392, 0.929412, 1 )
+custom_colors/font_color_hover = Color( 0.388235, 0.580392, 0.929412, 1 )
+custom_colors/font_color_pressed = Color( 0.388235, 0.580392, 0.929412, 1 )
+text = "0"
+
+[node name="Panel" parent="." index="1"]
+visible = false
+margin_top = 94.0
+margin_right = 78.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 0, 0 )
+
+[connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_Button_button_up"]

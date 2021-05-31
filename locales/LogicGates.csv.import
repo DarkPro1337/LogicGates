@@ -1,0 +1,16 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+
+[deps]
+
+files=[ "res://locales/LogicGates.en.translation", "res://locales/LogicGates.ru.translation" ]
+
+source_file="res://locales/LogicGates.csv"
+dest_files=[ "res://locales/LogicGates.en.translation", "res://locales/LogicGates.ru.translation" ]
+
+[params]
+
+compress=true
+delimiter=1

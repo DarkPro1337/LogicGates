@@ -1,12 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/gates/Gate.gd" type="Script" id=1]
+[ext_resource path="res://src/ui/themes/light_gates.tres" type="Theme" id=2]
 
 [node name="Gate" type="GraphNode" groups=[
 "save",
 ]]
 margin_right = 256.0
 margin_bottom = 128.0
+theme = ExtResource( 2 )
+custom_constants/port_offset = 0
+custom_constants/title_offset = 22
 title = "Gate"
 show_close = true
 slot/0/left_enabled = false
@@ -21,9 +25,12 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
-margin_left = 16.0
-margin_top = 24.0
-margin_right = 240.0
-margin_bottom = 56.0
+margin_left = 20.0
+margin_top = 30.0
+margin_right = 234.0
+margin_bottom = 62.0
 rect_min_size = Vector2( 0, 32 )
+mouse_filter = 2
+
 [connection signal="close_request" from="." to="." method="_on_Gate_close_request"]
+[connection signal="dragged" from="." to="." method="_on_Gate_dragged"]

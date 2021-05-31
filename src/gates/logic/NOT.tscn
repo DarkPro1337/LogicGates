@@ -1,8 +1,35 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/gates/Gate.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/ui/gates/!gate.png" type="Texture" id=2]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="StyleBoxFlat" id=1452]
+content_margin_left = 20.0
+content_margin_right = 22.0
+content_margin_top = 45.0
+content_margin_bottom = 0.0
+bg_color = Color( 1, 1, 1, 0.7 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0, 0, 0, 0.9 )
+
+[sub_resource type="StyleBoxFlat" id=1453]
+content_margin_left = 20.0
+content_margin_right = 22.0
+content_margin_top = 45.0
+content_margin_bottom = 0.0
+bg_color = Color( 1, 1, 1, 0.9 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.13, 0.44, 1, 0.9 )
+shadow_color = Color( 0, 0, 0, 0.1 )
+shadow_size = 8
+
+[sub_resource type="GDScript" id=1451]
 script/source = "extends Gate
 
 func process():
@@ -10,9 +37,72 @@ func process():
 "
 
 [node name="NOT" instance=ExtResource( 1 )]
-title = "NOT"
+margin_right = 100.0
+margin_bottom = 120.0
+custom_styles/frame = SubResource( 1452 )
+custom_styles/selectedframe = SubResource( 1453 )
+custom_colors/close_color = Color( 0, 0, 0, 1 )
+custom_colors/title_color = Color( 0, 0, 0, 1 )
+title = ""
 slot/0/left_enabled = true
 slot/0/right_enabled = true
-script = SubResource( 1 )
+script = SubResource( 1451 )
 inputs_size = 2
 outputs_size = 1
+
+[node name="Panel" parent="." index="0"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 45.0
+margin_right = 78.0
+margin_bottom = 77.0
+rect_pivot_offset = Vector2( -187.564, -95.2383 )
+
+[node name="A" type="Label" parent="Panel" index="0"]
+anchor_left = -0.5
+anchor_top = -0.031
+anchor_right = -0.5
+anchor_bottom = -0.031
+margin_left = 12.0
+margin_top = -0.00800002
+margin_right = 33.0
+margin_bottom = 32.992
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "A"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Y" type="Label" parent="Panel" index="1"]
+margin_left = 58.0
+margin_top = -1.0
+margin_right = 79.0
+margin_bottom = 32.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Y"
+align = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TITLE" type="Label" parent="Panel" index="2"]
+margin_left = -21.004
+margin_top = -52.041
+margin_right = 40.996
+margin_bottom = -19.041
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "NOT"
+align = 3
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="!" type="TextureRect" parent="Panel" index="3"]
+margin_left = 75.2219
+margin_top = 10.5946
+margin_right = 85.2219
+margin_bottom = 20.5946
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
