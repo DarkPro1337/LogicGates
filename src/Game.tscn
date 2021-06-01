@@ -485,6 +485,7 @@ margin_left = -337.0
 margin_top = -210.0
 margin_right = 338.0
 margin_bottom = 210.0
+rect_min_size = Vector2( 300, 105 )
 window_title = "Open a File"
 dialog_text = "Выберите файл который вы хотите открыть"
 mode = 0
@@ -505,6 +506,7 @@ margin_left = -337.5
 margin_top = -210.0
 margin_right = 337.5
 margin_bottom = 210.0
+rect_min_size = Vector2( 300, 105 )
 window_title = "Сохранить файл"
 dialog_text = "Выберите место в которое вы хотите сохранить файл"
 access = 2
@@ -524,6 +526,7 @@ margin_left = -173.0
 margin_top = -57.5
 margin_right = 173.0
 margin_bottom = 57.5
+rect_min_size = Vector2( 300, 105 )
 window_title = "Создать новый файл"
 dialog_text = "Вы уверены, что хотите создать новый файл? 
 Все несохраненные данные будут потеряны!"
@@ -540,9 +543,26 @@ margin_left = -173.0
 margin_top = -57.5
 margin_right = 173.0
 margin_bottom = 57.5
+rect_min_size = Vector2( 300, 105 )
 window_title = "Подтверждение выхода"
 dialog_text = "Вы уверены, что хотите выйти?
 Все несохраненные данные будут потеряны!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FileTypeError" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -313.0
+margin_top = -56.0
+margin_right = 313.0
+margin_bottom = 56.0
+window_title = "Ошибка загрузки"
+dialog_text = "Похоже вы пытались загрузить неверный формат файлов проекта!
+Пожалуйста убедитесь в том что вы сделали всё правильно и повторите операцию."
 __meta__ = {
 "_edit_use_anchors_": false
 }

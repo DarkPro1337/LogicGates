@@ -19,3 +19,4 @@ func add_gate_pos(gate, pos : Vector2, type : String):
 	var node = scene.instance()
 	workbench.add_child(node, true)
 	node.offset = pos
+

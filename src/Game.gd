@@ -1,5 +1,6 @@
 extends Control
 
+# All UI elements onready init for ease of using them
 onready var FileButton = $VSplitContainer/HSplitContainer/HBoxContainer/FileButton
 onready var EditButton = $VSplitContainer/HSplitContainer/HBoxContainer/EditButton
 onready var HelpButton = $VSplitContainer/HSplitContainer/HBoxContainer/HelpButton
@@ -8,15 +9,11 @@ onready var QuitDialog = $QuitDialog
 onready var OpenFileDialog = $OpenFileDialog
 onready var SaveFileDialog = $SaveFileDialog
 onready var AboutDialog = $AboutDialog
+onready var FileTypeError = $FileTypeError
 onready var WorkBench = $VSplitContainer/HSplitContainer2/WorkBench
 
-const project_save_path := "user://projects/"
-
 func _ready():
-	TranslationServer.set_locale("ru")
-	var dir := Directory.new()
-	if not dir.dir_exists(project_save_path):
-		dir.make_dir(project_save_path)
+	TranslationServer.set_locale("ru") # RU locale as default
 	
 	# MenuButton popup shotcuts init
 	## Yes, this looks like shit, but it works :P
@@ -67,22 +64,19 @@ func _ready():
 	FileButton.get_popup().set_item_shortcut(0, ctrl_new, true)
 	FileButton.get_popup().set_item_shortcut(1, ctrl_open, true)
 	FileButton.get_popup().set_item_shortcut(3, ctrl_save, true)
-	
 	## Edit Menu popup shortcuts assign
 	EditButton.get_popup().set_item_shortcut(0, ctrl_undo, true)
 	EditButton.get_popup().set_item_shortcut(1, ctrl_redo, true)
-	
 	## Help Menu popup shortcuts assign
 	HelpButton.get_popup().set_item_shortcut(0, ctrl_help, true)
 	
 	# File Menu connections
 	FileButton.get_popup().connect("id_pressed", self, "_file_on_item_pressed")
-	
 	# Edit Menu connections
 	EditButton.get_popup().connect("id_pressed", self, "_edit_on_item_pressed")
-	
 	# Help Menu connections
 	HelpButton.get_popup().connect("id_pressed", self, "_help_on_item_pressed")
+	
 	# Disable auto close on X pressed
 	get_tree().set_auto_accept_quit(false)
 
@@ -105,6 +99,7 @@ func _file_on_item_pressed(id):
 		QuitDialog.show()
 
 # EditMenu items press event
+## Not working for now
 func _edit_on_item_pressed(id):
 	if id == 0:
 		#TODO
@@ -121,6 +116,7 @@ func _help_on_item_pressed(id):
 	elif id == 2:
 		AboutDialog.show()
 
+# Project Saving
 func save_project(path : String):
 	var project_save := ProjectSave.new()
 	
@@ -133,60 +129,76 @@ func save_project(path : String):
 		path,
 		project_save
 	)
+	OS.set_window_title("LogicGates - " + SaveFileDialog.current_file)
 
+# Project Loading
 func load_project(path : String):
 	WorkBench.clear_connections()
 	for child in WorkBench.get_children():
 		if child is GraphNode:
 			child.free()
 	
-	print( load( path ) )
-	var project_save : ProjectSave = load( path )
-	
-	for gate in project_save.data.gates:
-		var gate_node = load(gate.filename).instance()
+	# Check if file has .tres in file type and then check if it is a resource or not
+	if path.find(".tres") == -1 or load(path).get_class() != "Resource":
+		FileTypeError.show()
+	else:
+		var project_save : ProjectSave = load( path )
 		
-		for key in gate.keys():
-			var value = gate[key]
+		for gate in project_save.data.gates:
+			var gate_node = load(gate.filename).instance()
+			
+			for key in gate.keys():
+				var value = gate[key]
+				
+				match key:
+					"filename":
+						continue
+					"offset":
+						value = str2var(value)
+				
+				gate_node.set(key, value)
+			
+			WorkBench.add_child(gate_node)
+		
+		for key in project_save.data.graph_edit.keys():
+			var value = project_save.data.graph_edit[key]
 			
 			match key:
-				"filename":
-					continue
-				"offset":
+				"connection_list":
+					for cnn in value:
+						WorkBench.call_deferred("_on_WorkBench_connection_request", cnn.from, cnn.from_port, cnn.to, cnn.to_port)
+				"scroll_offset":
 					value = str2var(value)
-			
-			gate_node.set(key, value)
+				_:
+					WorkBench.set(key, value)
 		
-		WorkBench.add_child(gate_node)
-	
-	for key in project_save.data.graph_edit.keys():
-		var value = project_save.data.graph_edit[key]
-		
-		match key:
-			"connection_list":
-				for cnn in value:
-					WorkBench.call_deferred("_on_WorkBench_connection_request", cnn.from, cnn.from_port, cnn.to, cnn.to_port)
-			"scroll_offset":
-				value = str2var(value)
-			_:
-				WorkBench.set(key, value)
-	
-	OS.set_window_title("LogicGates - " + OpenFileDialog.current_file)
+		# Set project name in the window title
+		OS.set_window_title("LogicGates - " + OpenFileDialog.current_file)
 
+# New file confirm
 func _on_NewDialog_confirmed():
-	get_tree().reload_current_scene()
+	WorkBench.clear_connections()
+	for child in WorkBench.get_children():
+		if child is GraphNode:
+			child.free()
+	OS.set_window_title("LogicGates")
 
+# Quit dialog confirm
 func _on_QuitDialog_confirmed():
 	get_tree().quit()
 
+# SaveFile dialog selection
 func _on_SaveFileDialog_file_selected(path):
 	save_project(path)
 
+# OpenFile dialog selection
 func _on_OpenFileDialog_file_selected(path):
 	load_project(path)
 
+# GitHub link press
 func _on_GitHub_pressed():
 	OS.shell_open("https://github.com/DarkPro1337/LogicGates")
 
+# KFGUMRF link press
 func _on_KFGUMRF_pressed():
 	OS.shell_open("https://www.kfgumrf.ru")
