@@ -10,6 +10,7 @@ onready var OpenFileDialog = $OpenFileDialog
 onready var SaveFileDialog = $SaveFileDialog
 onready var AboutDialog = $AboutDialog
 onready var FileTypeError = $FileTypeError
+onready var HelpFileError = $HelpFileError
 onready var WorkBench = $VSplitContainer/HSplitContainer2/WorkBench
 
 func _ready():
@@ -112,7 +113,7 @@ func _edit_on_item_pressed(id):
 # HelpMenu item press event
 func _help_on_item_pressed(id):
 	if id == 0:
-		pass
+		OS.shell_open("help.chm")
 	elif id == 2:
 		AboutDialog.show()
 

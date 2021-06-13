@@ -34,3 +34,8 @@ TOGGLE;Toggle;Переключатель
 LED;LED;Светодиод
 CLOCK;Clock;Часы
 Open a File;Open a File;Открыть файл
+Zoom Out;Zoom Out;Уменьшить масштаб
+Zoom Reset;Zoom Reset;Сбросить масштаб
+Zoom In;Zoom In;Увеличить масштаб
+Enable snap and show grid.;Enable snap and show grid.;Переключить прилипание и видимость сетки
+Enable grid minimap.;Enable grid minimap.;Переключить видимость миникарты

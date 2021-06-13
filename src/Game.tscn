@@ -436,7 +436,7 @@ margin_left = 108.0
 margin_right = 496.0
 margin_bottom = 83.0
 text = "LogicGates v1.0
-© 2021 Артем Дарков
+© 2021 Артем Черных
 © 2021 КФ ГУМРФ"
 
 [node name="Label" type="Label" parent="AboutDialog/MarginContainer/VBoxContainer"]
@@ -563,6 +563,23 @@ margin_bottom = 56.0
 window_title = "Ошибка загрузки"
 dialog_text = "Похоже вы пытались загрузить неверный формат файлов проекта!
 Пожалуйста убедитесь в том что вы сделали всё правильно и повторите операцию."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HelpFileError" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -171.0
+margin_top = -69.0
+margin_right = 171.0
+margin_bottom = 69.0
+window_title = "Ошибка открытия файла справки"
+dialog_text = "Похоже вы пытались открыть файл справки,
+но он не был найден либо повреждён.
+Пожалуйста переустановите программу!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
