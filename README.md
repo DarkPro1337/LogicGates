@@ -1,10 +1,12 @@
-# Logic Ports
+# LogicGates
+![LogicGates logo](logo.png)
  
-## A digital circuit editor made with Godot Engine.
+## Приложение для создания логических схем на базе Godot Engine.
+Форкнуто и модифицированно для сдачи выпускной квалификационной работы в ходе окончания учёбы в КФ ГУМРФ.
+Приложение разработано специально для нужд КФ ГУМРФ.
 
-## Roadmap:
-[ ] Modules (a gate that can be created from a project, and have the same functionality as this project)
-
-[ ] Bundled wires (wires that carry more than one bit)
-
-[ ] Save connections in a more efficient way
+## Изменения от оригинального репозитория:
+- [x] Обновлённый UI в стиле файл-меню;
+- [x] Переведённый на русский интерфейс;
+- [x] Легенда выбранного узла (с названием и изображением по ГОСТу);
+- [x] Некоторые скрипты были модифицированы для работы с новым UI;
